@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_api/TodoList.dart';
 // import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -23,37 +24,9 @@ class _MainAppState extends State<MainApp> {
   Widget build(BuildContext context) {
     print(users);
     return MaterialApp(
+      theme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.deepPurple.shade100,
-          title: const Text('  example app'),
-        ),
-        body: ListView.builder(
-            itemCount: users.length,
-            itemBuilder: (context, index) {
-              var user = users[index];
-              var email = user["email"];
-              var namef = user["name"]["first"];
-              var namet = user["name"]["title"];
-              var namel = user["name"]["last"];
-              var image = user['picture']['thumbnail'];
-              var fullname = "$namet $namef $namel";
-              return ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: NetworkImage(image),
-                ),
-                title: Text("${fullname}"),
-                subtitle: Text(email),
-              );
-            }),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            featchData("data");
-          },
-          child: const Icon(Icons.add),
-        ),
-      ),
+      home: const TodoListPage(),
     );
   }
 
@@ -70,3 +43,31 @@ class _MainAppState extends State<MainApp> {
     // print("users =  ${users}");
   }
 }
+      //   appBar: AppBar(
+      //     backgroundColor: Colors.deepPurple.shade100,
+      //     title: const Text('  example app'),
+      //   ),
+      //   body: ListView.builder(
+      //       itemCount: users.length,
+      //       itemBuilder: (context, index) {
+      //         var user = users[index];
+      //         var email = user["email"];
+      //         var namef = user["name"]["first"];
+      //         var namet = user["name"]["title"];
+      //         var namel = user["name"]["last"];
+      //         var image = user['picture']['thumbnail'];
+      //         var fullname = "$namet $namef $namel";
+      //         return ListTile(
+      //           leading: CircleAvatar(
+      //             backgroundImage: NetworkImage(image),
+      //           ),
+      //           title: Text("${fullname}"),
+      //           subtitle: Text(email),
+      //         );
+      //       }),
+      //   floatingActionButton: FloatingActionButton(
+      //     onPressed: () {
+      //       featchData("data");
+      //     },
+      //     child: const Icon(Icons.add),
+      //   ),
